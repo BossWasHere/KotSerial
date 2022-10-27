@@ -47,10 +47,10 @@ class SerialInstance(private val serialPort: SerialPort) {
                 when (readMode) {
                     SerialMode.TEXT -> builder.append(String(buffer, 0, read))
                     SerialMode.HEX -> {
-                        builder.append(buffer.take(read).joinToString(" ") { String.format("%02X", it) })
+                        builder.append(buffer.take(read).joinToString(" ") { String.format("%02X", it) }).append(' ')
                     }
                     SerialMode.BINARY -> {
-                        builder.append(buffer.take(read).joinToString(" ") { String.format("%8s", Integer.toBinaryString(it.toInt())).replace(' ', '0') })
+                        builder.append(buffer.take(read).joinToString(" ") { String.format("%8s", Integer.toBinaryString(it.toInt())).replace(' ', '0') }).append(' ')
                     }
                 }
             }
@@ -58,7 +58,7 @@ class SerialInstance(private val serialPort: SerialPort) {
 
         if (builder.isNotEmpty()) {
             print("\r")
-            println(builder.toString())
+            println(builder.trim())
             printPrompt();
         }
     }
