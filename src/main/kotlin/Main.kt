@@ -66,7 +66,8 @@ fun main(args: Array<String>) {
         serialPort.numStopBits = numStopBits
 
         print("Enter read timeout ms [default: ${readTimeoutMs}]: ")
-        serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, readLine()?.toIntOrNull() ?: readTimeoutMs, 0)
+        serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING,
+            (readLine()?.toIntOrNull() ?: readTimeoutMs).coerceAtLeast(0), 0)
     } else {
         serialPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, readTimeoutMs, 0)
     }
