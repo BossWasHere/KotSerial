@@ -79,6 +79,6 @@ fun main(args: Array<String>) {
     }
 
     val serialInstance = SerialInstance(serialPort)
-    serialInstance.sendInfo()
+    serialInstance.printInfo()
     serialInstance.start()
 }

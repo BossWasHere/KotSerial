@@ -10,7 +10,7 @@ class SerialInstance(private val serialPort: SerialPort) {
     private var writeMode = SerialMode.TEXT
     private var started = false
 
-    fun sendInfo() {
+    fun printInfo() {
         println("Port open. Commands:")
         println("  \\T text write -- \\X hex write")
         println("  \\b binary read -- \\t text read -- \\x hex read")
